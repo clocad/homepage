@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CLOCAD</title>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .fade-in {
+      animation: fadeIn 1.2s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-white text-black">
+
+  <!-- BRAND -->
+  <div class="text-center pt-10 pb-6 fade-in">
+    <div class="text-[36px] font-light tracking-[0.2em]">
+      CLOCAD
+    </div>
+    <div class="text-xs tracking-[0.4em] text-gray-400 mt-2">
+      MODERN ESSENTIALS
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="max-w-6xl mx-auto px-6 fade-in">
+
+    <!-- Expanded -->
+    <div id="expandedContainer" class="hidden mb-10 transition-all duration-500">
+      <img id="expandedImage" class="w-full h-auto object-cover transition duration-500 scale-95 opacity-0" />
+    </div>
+
+    <!-- GRID -->
+    <div id="galleryGrid" class="grid grid-cols-3 gap-4 transition duration-500">
+
+      <!-- images -->
+      <script>
+        for (let i = 1; i <= 9; i++) {
+          document.write(`
+            <img src="images/${i}.jpg"
+              class="cursor-pointer object-cover w-full h-full transition duration-500 hover:scale-105 hover:opacity-90"
+              onclick="expandImage(this)">
+          `);
+        }
+      </script>
+
+    </div>
+  </section>
+
+  <!-- SOCIAL -->
+  <section class="text-center py-16 space-x-8 text-sm tracking-wide fade-in">
+    <a href="https://instagram.com" target="_blank" class="hover:opacity-50 transition">Instagram</a>
+    <a href="https://facebook.com" target="_blank" class="hover:opacity-50 transition">Facebook</a>
+    <a href="https://x.com" target="_blank" class="hover:opacity-50 transition">X</a>
+    <a href="https://amazon.co.jp" target="_blank" class="hover:opacity-50 transition">Amazon</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-xs pb-28 text-gray-500 fade-in">
+    <p>contact@clocad.com</p>
+    <p class="mt-1">Tokyo, Japan</p>
+  </footer>
+
+  <!-- CTA -->
+  <div class="fixed bottom-0 left-0 w-full backdrop-blur-md bg-white/70 border-t text-center py-4">
+    <a href="https://instagram.com" target="_blank"
+       class="text-sm tracking-wide hover:opacity-60 transition">
+      Message on Instagram
+    </a>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function expandImage(img) {
+      const expandedContainer = document.getElementById("expandedContainer");
+      const expandedImage = document.getElementById("expandedImage");
+      const grid = document.getElementById("galleryGrid");
+
+      expandedImage.src = img.src;
+
+      grid.style.opacity = "0.2";
+
+      expandedContainer.classList.remove("hidden");
+
+      setTimeout(() => {
+        expandedImage.classList.remove("opacity-0", "scale-95");
+        expandedImage.classList.add("opacity-100", "scale-100");
+      }, 50);
+    }
+
+    document.getElementById("expandedImage").onclick = function() {
+      const expandedContainer = document.getElementById("expandedContainer");
+      const expandedImage = document.getElementById("expandedImage");
+      const grid = document.getElementById("galleryGrid");
+
+      expandedImage.classList.remove("opacity-100", "scale-100");
+      expandedImage.classList.add("opacity-0", "scale-95");
+
+      grid.style.opacity = "1";
+
+      setTimeout(() => {
+        expandedContainer.classList.add("hidden");
+      }, 300);
+    };
+  </script>
+
+</body>
+</html>
